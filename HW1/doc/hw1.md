@@ -7,10 +7,10 @@ By Anthony DeDominic [\<dedominica@my.easternct.edu\>](mailto:dedominica@my.east
 Consecutive Integer Check GCD (Bruteforce) Algorithm
 ----------------------------------------------------
 |         | $GCD(int,int)$     | Iterations | GCD  |
-|:---     | :---             | :---       | :--- |
+|:---     | :---               | :---       | :--- |
 | worst   | $GCD(17711,19035)$ | 17711      | 1    |
 | best    | $GCD(1033,16906)$  | 1033       | 1    |
-| average | ??               | 7283       | ??   |
+| average | ??                 | 7283       | ??   |
 
 ### Initial Analysis
 
@@ -47,10 +47,10 @@ gcd_count gcd_brute(int large, int small, int gcd, int count) {
 Euclidean GCD Algorithm
 ------------------------
 |         | $GCD(int,int)$    | Iterations | GCD  |
-|:------- | :-------------- | :--------- | :--- |
+|:------- | :--------------   | :--------- | :--- |
 | worst   | $GCD(9955,12581)$ | 15         | 1    |
 | best    | $GCD(1331,9331)$  | 4          | 1    |
-| average | ??              | 8          | ??   |
+| average | ??                | 8          | ??   |
 
 ### Initial Analysis
 
