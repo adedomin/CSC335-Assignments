@@ -52,8 +52,8 @@
 <a id="user-content-by-anthony-dedominic-dedominicamyeasternctedu" class="anchor" href="#by-anthony-dedominic-dedominicamyeasternctedu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>By Anthony DeDominic <a href="mailto:dedominica@my.easternct.edu">&lt;dedominica@my.easternct.edu&gt;</a>
 </h2>
 
-<h3>
-<a id="user-content-bruteforce-gcd-algorithm" class="anchor" href="#bruteforce-gcd-algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bruteforce GCD Algorithm</h3>
+<h2>
+<a id="user-content-consecutive-integer-check-gcd-bruteforce-algorithm" class="anchor" href="#consecutive-integer-check-gcd-bruteforce-algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Consecutive Integer Check GCD (Bruteforce) Algorithm</h2>
 
 <table>
 <thead>
@@ -66,28 +66,56 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Worst</td>
-<td align="left">GCD(19227 , 18553)</td>
-<td align="left">18552</td>
+<td align="left">worst</td>
+<td align="left">GCD(17711 , 19035)</td>
+<td align="left">17711</td>
 <td align="left">1</td>
 </tr>
 <tr>
-<td align="left">Best</td>
-<td align="left">GCD(1102 , 17464</td>
-<td align="left">1100</td>
-<td align="left">2</td>
+<td align="left">best</td>
+<td align="left">GCD(1033 , 16906)</td>
+<td align="left">1033</td>
+<td align="left">1</td>
 </tr>
 <tr>
-<td align="left">Average</td>
+<td align="left">average</td>
 <td align="left">??</td>
-<td align="left">7240</td>
+<td align="left">7283</td>
 <td align="left">??</td>
 </tr>
 </tbody>
 </table>
 
-<h4>
-<a id="user-content-euclidean-gcd-algorithm" class="anchor" href="#euclidean-gcd-algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Euclidean GCD Algorithm</h4>
+<h3>
+<a id="user-content-initial-analysis" class="anchor" href="#initial-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initial Analysis</h3>
+
+<p>The worst case time complexity of the bruteforce algorithm is linearly proportional to the min(N, M); where N is an integer and M is another integer as defined <a href="https://ct-ecsu.blackboard.com/bbcswebdav/pid-9986611-dt-content-rid-26319787_1/courses/ECSU40723.201640/hw1.pdf">here</a>.
+The worst case being when GCD(N,M) = 1.
+This is because the algorithm goes from the smallest of the two numbers and recursively counts downwards, by a factor of 1, from the starting value of min(N, M) until it reaches the base case of 1 which will always divide N and M completely with no remainders.
+In general, this algorithm will perform faster when the min() is small, max() will not change anything assuming GCD will equal 1 for GCD(N,M).</p>
+
+<h3>
+<a id="user-content-time-complexity" class="anchor" href="#time-complexity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Time Complexity</h3>
+
+<p>Like explained above, this algorithm's best and worst number pairs appear to be directly influenced by the smallest of the two numbers. This is a linear relationship since the decreasing factor is only 1.</p>
+
+<p>O(min(N,M))</p>
+
+<h3>
+<a id="user-content-function-used" class="anchor" href="#function-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Function Used</h3>
+
+<div class="highlight highlight-source-c"><pre>gcd_count <span class="pl-en">gcd_brute</span>(<span class="pl-k">int</span> large, <span class="pl-k">int</span> small, <span class="pl-k">int</span> gcd, <span class="pl-k">int</span> count) {
+
+    <span class="pl-k">if</span> (large % gcd == <span class="pl-c1">0</span> &amp;&amp; small % gcd == <span class="pl-c1">0</span>) {
+
+        <span class="pl-k">return</span> (gcd_count) {gcd, count};
+    }
+
+    <span class="pl-k">return</span> <span class="pl-c1">gcd_brute</span>(large,small,gcd-<span class="pl-c1">1</span>,count+<span class="pl-c1">1</span>);
+}</pre></div>
+
+<h2>
+<a id="user-content-euclidean-gcd-algorithm" class="anchor" href="#euclidean-gcd-algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Euclidean GCD Algorithm</h2>
 
 <table>
 <thead>
@@ -100,19 +128,19 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Worst</td>
-<td align="left">GCD(8504 , 13883)</td>
-<td align="left">13</td>
+<td align="left">worst</td>
+<td align="left">GCD(9955 , 12581)</td>
+<td align="left">15</td>
 <td align="left">1</td>
 </tr>
 <tr>
-<td align="left">Best</td>
-<td align="left">GCD(7647 , 7648)</td>
-<td align="left">2</td>
+<td align="left">best</td>
+<td align="left">GCD(1331 , 9331)</td>
+<td align="left">4</td>
 <td align="left">1</td>
 </tr>
 <tr>
-<td align="left">Average</td>
+<td align="left">average</td>
 <td align="left">??</td>
 <td align="left">8</td>
 <td align="left">??</td>
@@ -120,12 +148,38 @@
 </tbody>
 </table>
 
-<div class="highlight highlight-source-c"><pre><span class="pl-k">int</span> <span class="pl-en">main</span>() {}</pre></div>
+<h3>
+<a id="user-content-initial-analysis-1" class="anchor" href="#initial-analysis-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initial Analysis</h3>
+
+<p>This algorithm uses significantly less operations to complete.
+This is due in fact that the decreasing factor is (max(N,M) / max(N,M) % min(N,M)).
+this value is much larger than ~1, which is the decreasing factor for the Consecutive Integer Check algorithm.
+Unlike the other above algorithm, it will complete faster on average when the difference between max() and min() is either very far apart or very close;
+in the burteforce method, closeness of said difference is irrelevent.
+this will allow the algorithm to fall nearer to the base case of 1 faster.</p>
+
+<p>NOTE that this assumes GCD(N,M) = 1 which would be the worst case</p>
 
 <h3>
-<a id="user-content-time-complexity-of-the-bruteforce-gcd-algorithm" class="anchor" href="#time-complexity-of-the-bruteforce-gcd-algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Time Complexity of the Bruteforce GCD Algorithm</h3>
+<a id="user-content-time-complexity-1" class="anchor" href="#time-complexity-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Time Complexity</h3>
 
-<p>The time complexity of the bruteforce algorithm is proportional to the</p>
+<p>Where the bruteforce method has a linear time complexity, this algorithm appears to have a logirithmic complexity.
+doing log(min(N,M),10)*C gets me numbers very close to the amount of iterations these gcd algorithms had to run through.</p>
+
+<p>O(log_10(min(N,M))</p>
+
+<h3>
+<a id="user-content-function-used-1" class="anchor" href="#function-used-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Function Used</h3>
+
+<div class="highlight highlight-source-c"><pre>gcd_count <span class="pl-en">gcd_eculid</span>(<span class="pl-k">int</span> large, <span class="pl-k">int</span> small, <span class="pl-k">int</span> count) {
+
+    <span class="pl-k">if</span> (small == <span class="pl-c1">0</span>) {
+
+        <span class="pl-k">return</span> (gcd_count) {large, count};
+    }
+
+    <span class="pl-k">return</span> <span class="pl-c1">gcd_eculid</span>(small, large % small, count+<span class="pl-c1">1</span>);
+}</pre></div>
 
               </div>
             </div>

@@ -68,10 +68,10 @@ gcd_count gcd_eculid(int large, int small, int count) {
 	
 	if (small == 0) {
 		
-		return (gcd_count) {large, count};
+		return (gcd_count) {large, count+1};
 	}
 
-	return gcd_eculid(small, large % small, count+1);
+	return gcd_eculid(small, (large % small), count+1);
 }
 
 // GCD using a bruteforce method - recursive
@@ -81,10 +81,10 @@ gcd_count gcd_eculid(int large, int small, int count) {
 // count   -> number of times this algo ran
 // RETURNS -> a struct with the gcd and the count
 gcd_count gcd_brute(int large, int small, int gcd, int count) {
-	
+
 	if (large % gcd == 0 && small % gcd == 0) {
 
-		return (gcd_count) {gcd, count};
+		return (gcd_count) {gcd, count+1};
 	}
 
 	return gcd_brute(large,small,gcd-1,count+1);
@@ -97,7 +97,14 @@ gcd_count gcd_brute(int large, int small, int gcd, int count) {
 //            SEE BRUTE and EUCLID definition
 // RETURNS -> a tuple with the gcd and the count
 gcd_count GCD(int num1, int num2, char type) {
-	
+
+	// ints must be greater than 0
+	// ints must not be equal as well
+	if ((num1 < 1 && num2 < 1) || num1 == num2) {
+		printf("An error occured: GCD Arguments must be greater than zero or not equal to each other.");
+		exit(1);
+	}
+
 	if (num2 > num1) {
 		int temp = num1;
 		num1 = num2;
@@ -213,5 +220,7 @@ int main(void) {
 
 	printf("The average number of iterations used for all %d pairs is (%d).\n\n",
 			MAX_PAIRS,average_euclid);
+
+	return 0;
 }
 

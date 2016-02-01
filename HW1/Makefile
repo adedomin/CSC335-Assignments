@@ -4,10 +4,17 @@ NAME=gcd
 DEPS=
 OBJ=gcd.o
 
-all: $(OBJ) executable clean
+DOC=grip
+DOCFLAGS=--export
+DOCS=doc/hw1.html
+
+all: $(OBJ) executable clean $(DOCS)
 	
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
+
+%.html: %.md
+	$(DOC) $< $@ $(DOCFLAGS)
 
 executable:
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) 
