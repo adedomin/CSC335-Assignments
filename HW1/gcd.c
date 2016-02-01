@@ -1,4 +1,6 @@
 // HW 1 CSC 335
+// by Anthony DeDominic
+// for CSC335 -> Spring 2016
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>

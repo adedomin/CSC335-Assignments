@@ -4,17 +4,15 @@ NAME=gcd
 DEPS=
 OBJ=gcd.o
 
-DOC=grip
-DOCFLAGS=--export
-DOCS=doc/hw1.html
+DOC=pandoc
+DOCNAME=./doc/hw1.pdf
+DOCOBJ=./doc/hw1.md
+DOCFLAGS=-o $(DOCNAME)
 
-all: $(OBJ) executable clean $(DOCS)
+all: $(OBJ) executable clean
 	
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
-
-%.html: %.md
-	$(DOC) $< $@ $(DOCFLAGS)
 
 executable:
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) 
@@ -24,3 +22,9 @@ clean:
 
 remove:
 	rm $(NAME)
+
+make_doc:
+	$(DOC) $(DOCOBJ) $(DOCFLAGS)
+
+remove_doc:
+	rm $(DOCNAME)
