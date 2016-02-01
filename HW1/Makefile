@@ -5,9 +5,15 @@ DEPS=
 OBJ=gcd.o
 
 DOC=pandoc
+DOCFLAGS=
 DOCNAME=./doc/hw1.pdf
 DOCOBJ=./doc/hw1.md
-DOCFLAGS=-o $(DOCNAME)
+
+PACK=zip
+PACKFLAGS=-r
+PACKNAME=HW1-dedominica.zip
+PACKDIR=../HW1
+
 
 all: $(OBJ) executable clean
 	
@@ -24,7 +30,13 @@ remove:
 	rm $(NAME)
 
 make_doc:
-	$(DOC) $(DOCOBJ) $(DOCFLAGS)
+	$(DOC) $(DOCOBJ) -o $(DOCNAME) $(DOCFLAGS)
 
 remove_doc:
 	rm $(DOCNAME)
+
+make_package:
+	$(PACK) $(PACKFLAGS) $(PACKNAME) $(PACKDIR)
+
+remove_package:
+	rm $(PACKNAME)
