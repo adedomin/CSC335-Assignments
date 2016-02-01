@@ -5,6 +5,8 @@
 
 #define DEBUG 0
 
+#define BRUTE '\0'
+#define EUCLID '1'
 #define MAX_PAIRS 100
 #define BIGGEST_RAND 20000
 #define SMALLEST_RAND 1000
@@ -32,7 +34,7 @@ struct numpairs {
 };
 typedef struct numpairs numpairs;
 
-// returns a tuple with
+// A tuple with
 // gcd   -> the gcd
 // count -> number of 
 //          iterations
@@ -57,7 +59,11 @@ numpairs construct_rand_num_pair() {
 	return numpair;
 }
 
-// GCD using euclid' algo
+// GCD using euclid' algo - recursive
+// large   -> larger of the two numbers
+// small   -> smaller of the two numbers
+// count   -> number of times this algo ran
+// RETURNS -> a struct with the gcd and the count
 gcd_count gcd_eculid(int large, int small, int count) {
 	
 	if (small == 0) {
@@ -68,7 +74,12 @@ gcd_count gcd_eculid(int large, int small, int count) {
 	return gcd_eculid(small, large % small, count+1);
 }
 
-// GCD using a bruteforce method
+// GCD using a bruteforce method - recursive
+// large   -> larger of the two numbers
+// small   -> smaller of the two numbers
+// gcd     -> possible gcd, decrements by 1
+// count   -> number of times this algo ran
+// RETURNS -> a struct with the gcd and the count
 gcd_count gcd_brute(int large, int small, int gcd, int count) {
 	
 	if (large % gcd == 0 && small % gcd == 0) {
@@ -77,6 +88,30 @@ gcd_count gcd_brute(int large, int small, int gcd, int count) {
 	}
 
 	return gcd_brute(large,small,gcd-1,count+1);
+}
+
+// the GCD algorithm
+// num1    -> int
+// num2    -> int
+// type    -> the GCD algorithm to run
+//            SEE BRUTE and EUCLID definition
+// RETURNS -> a tuple with the gcd and the count
+gcd_count GCD(int num1, int num2, char type) {
+	
+	if (num2 > num1) {
+		int temp = num1;
+		num1 = num2;
+		num2 = temp;
+	}
+
+	// if user passed BRUTE
+	if (!type) {
+		
+		return gcd_brute(num1,num2,num2,0);
+	}
+
+	// if user passed any other char
+	return gcd_eculid(num1,num2,0);
 }
 
 int main(void) {
@@ -107,7 +142,7 @@ int main(void) {
 
 		gcd_count g_c;
 
-		g_c = gcd_brute(max(pairs[i]),min(pairs[i]),min(pairs[i]),0);
+		g_c = GCD(pairs[i].num1,pairs[i].num2, BRUTE);
 		pairs[i].gcd = g_c.gcd;
 		pairs[i].brute_count = g_c.count;
 
@@ -118,7 +153,7 @@ int main(void) {
 			fastest_brute = i;
 		}
 
-		g_c = gcd_eculid(max(pairs[i]),min(pairs[i]),0);	
+		g_c = GCD(pairs[i].num1,pairs[i].num2, EUCLID);
 		pairs[i].gcd = g_c.gcd;
 		pairs[i].euclid_count = g_c.count;
 
@@ -134,8 +169,11 @@ int main(void) {
 	for (int i=0; i<MAX_PAIRS; ++i) {
 		
 #if DEBUG
-		printf("GCD #%d:\t\t brute op count: %d\t\t", i+1, pairs[i].brute_count);
-		printf("euclid op count: %d\n", pairs[i].euclid_count);
+		printf("GCD(%d, %d) = %d:\t brute op count: %d\teuclid op count: %d\n",
+				pairs[i].num1,pairs[i].num2,
+				pairs[i].gcd,
+				pairs[i].brute_count,
+				pairs[i].euclid_count);
 #endif
 
 		average_brute += pairs[i].brute_count;
