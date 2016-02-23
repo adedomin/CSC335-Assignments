@@ -40,7 +40,7 @@ package: doc
 	mkdir $(PACKDIR)
 	cp $(SRC) $(DOCOBJ) $(DOCNAME) ./Makefile ./HW1/
 	$(PACK) $(PACKFLAGS) $(PACKNAME) $(PACKDIR)
-	rm -r $(PACKDIR) $(DOCNAME)
+	rm -r $(PACKDIR)
 
 remove_package:
 	rm $(PACKNAME)

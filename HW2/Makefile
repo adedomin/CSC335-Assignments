@@ -20,7 +20,7 @@ package: doc
 	mkdir $(PACKDIR)
 	cp $(DOCNAME) $(DOCOBJ) ./Makefile ./HW2/
 	$(PACK) $(PACKFLAGS) $(PACKNAME) $(PACKDIR)
-	rm -rf $(PACKDIR) $(DOCNAME)
+	rm -rf $(PACKDIR)
 
 remove_package:
 	rm $(PACKNAME)
