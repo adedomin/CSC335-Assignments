@@ -1,8 +1,14 @@
-Homework 2 - CSC 335
-=====================
-
-By Anthony DeDominic
----------------------
+---
+title: Homework 2 CSC335
+author:
+    - Anthony DeDominic \<dedominica@my.easternct.edu\>
+date: \today{}
+geometry: margin=2cm
+header-includes:
+    - \usepackage{setspace}
+    - \doublespacing
+	- \usepackage{mathpazo}
+---
 
 ### 1)
 
@@ -48,5 +54,5 @@ fig. 1: -NOTE- these values are estimates.
 ### 3)
 
 a) the count of negative numbers $(<0)$ in the array, A
-b) 0, as in no negatives, to n, as in all negatives.
+b) n
 c) 0, as in no negatives, to n, as in all negatives.

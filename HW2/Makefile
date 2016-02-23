@@ -6,18 +6,21 @@ DOCOBJ=hw2.md
 PACK=zip
 PACKFLAGS=-r
 PACKNAME=HW2-dedominica.zip
-PACKDIR=../HW2
+PACKDIR=HW2/
 
-all: make_doc
+all: doc
 	
-make_doc:
+doc:
 	$(DOC) $(DOCOBJ) -o $(DOCNAME) $(DOCFLAGS)
 
 remove_doc:
 	rm $(DOCNAME)
 
-make_package:
+package: doc
+	mkdir $(PACKDIR)
+	cp $(DOCNAME) $(DOCOBJ) ./Makefile ./HW2/
 	$(PACK) $(PACKFLAGS) $(PACKNAME) $(PACKDIR)
+	rm -rf $(PACKDIR) $(DOCNAME)
 
 remove_package:
 	rm $(PACKNAME)

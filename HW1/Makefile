@@ -2,17 +2,18 @@ CC=cc
 CFLAGS=-Wall --std=c99 -O0
 NAME=gcd
 DEPS=
+SRC=gcd.c
 OBJ=gcd.o
 
 DOC=pandoc
 DOCFLAGS=
-DOCNAME=./doc/hw1.pdf
-DOCOBJ=./doc/hw1.md
+DOCNAME=./hw1.pdf
+DOCOBJ=./hw1.md
 
 PACK=zip
 PACKFLAGS=-r
 PACKNAME=HW1-dedominica.zip
-PACKDIR=../HW1
+PACKDIR=HW1/
 
 
 all: $(OBJ) executable clean
@@ -29,14 +30,17 @@ clean:
 remove:
 	rm $(NAME)
 
-make_doc:
+doc:
 	$(DOC) $(DOCOBJ) -o $(DOCNAME) $(DOCFLAGS)
 
 remove_doc:
 	rm $(DOCNAME)
 
-make_package:
+package: doc
+	mkdir $(PACKDIR)
+	cp $(SRC) $(DOCOBJ) $(DOCNAME) ./Makefile ./HW1/
 	$(PACK) $(PACKFLAGS) $(PACKNAME) $(PACKDIR)
+	rm -r $(PACKDIR) $(DOCNAME)
 
 remove_package:
 	rm $(PACKNAME)
