@@ -10,16 +10,34 @@ header-includes:
 
 ### 1)
 
+This equation computes the sum of n, minus the series up to m, times 5.
+
 This equation computes $sum = \sum\limits_{i=m}^{n}\sum\limits_{j=1}^{i} 5$.
-The second summation series can be simplified as simplying being $i\times 5$.
-Since 5 is constant, all it would do is add 5 to the sum, $i$ times, which is equivalent to multiplying 5 by i.
+The second summation series can be simplified as $i\times 5$.
+Since 5 is constant, all it would do is add 5 to the sum, $i$ times, which is equivalent to multiplying 5 by $i$.
 So you get $\sum\limits_{i=m}^{n} i\times 5$.
 This equation gives you the summation series $(m + (m+1) + (m+2) + (m+3) + ... + n)\times 5, m<n$.
 $m$ is merely removing the sequence $1 + 2 + ... + m-1$ from the above sequence.
 Thus, this sequence can be written as $((1 + 2 + 3 + ... + n) - (1 + 2 + 3 + ... + (m-1)))\times 5$.
 The sequence above is logically equivalent to $(\frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2})\times 5$.
-dividing the above by 5 gives us the amount of times $sum = sum + 5$ in the code is ran, so $(\frac{n(n+1}{2}-\frac{(m-1)((m-1)+1)}{2})$ additions and assignments.
+dividing the above by 5 gives us the amount of times $sum = sum + 5$ in the code is ran, so $\frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2}$ additions and assignments.
 Because $n^{2}$ is the largest factor, this equation has a time complexity of $\Theta(n^{2})$.
+
+### 1) Analysis
+
+The number of times the code $sum = sum + 5$ is called is $\frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2}$
+
+$$
+\begin{aligned} 
+    Sum(0,1) & = 1 \\
+	Sum(m,n) & = \sum\limits_{i=m}^{n}\sum\limits_{j=1}^{i} 1 \\
+	           & = \sum\limits_{i=m}^{n} i \\
+			   & = m + (m+1) + (m+2) + ... + n \\
+			   & = 1 + 2 + 3 + ... + n - 1 + 2 + 3 + ... + (m-1) \\
+			   & = \frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2} \\
+			   & = \Theta(n^{2}) \\
+\end{aligned}
+$$
 
 ### 2) Definitions
 
@@ -53,12 +71,11 @@ the function makes n-1 comparisons to find the largest value.
 
 $$
 \begin{aligned}
-	Recursive([1])     & = 0 \\
-	Recursive([0..n])  & = Recursive([0..n-1]) + 1, n > 1 \\
-	                   & = (Recursive([0..n-2]) + 1) + 1 \\
-	                   & = (Recursive([0..(n-(n-1))]) + 1 + 1 + ... + 1) + 1 \\
-	                   & = n - 1 \\
-	                   & \because n - 1 \\
-					   & \therefore Recursive(n) \in \Theta(n) \\
+	Recursive([1])      & = 0 \\
+	Recursive([0..n-1]) & = Recursive([0..n-2]) + 1, n > 1 \\
+	                    & = (Recursive([0..n-3]) + 1) + 1 \\
+	                    & = (Recursive([0..(n-(n-1))]) + 1 + 1 + ... + 1) + 1 \\
+	                    & = n - 1 \\
+                        & = \Theta(n) \\
 \end{aligned}
 $$
