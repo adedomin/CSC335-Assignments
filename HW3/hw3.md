@@ -21,7 +21,7 @@ $m$ is merely removing the sequence $1 + 2 + ... + m-1$ from the above sequence.
 Thus, this sequence can be written as $((1 + 2 + 3 + ... + n) - (1 + 2 + 3 + ... + (m-1)))\times 5$.
 The sequence above is logically equivalent to $(\frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2})\times 5$.
 dividing the above by 5 gives us the amount of times $sum = sum + 5$ in the code is ran, so $\frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2}$ additions and assignments.
-Because $n^{2}$ is the largest factor, this equation has a time complexity of $\Theta(n^{2})$.
+Because $n^{2}$ is the largest factor, this equation has a time complexity of $O(n^{2})$.
 
 ### 1) Analysis
 
@@ -35,7 +35,7 @@ $$
 			   & = m + (m+1) + (m+2) + ... + n \\
 			   & = 1 + 2 + 3 + ... + n - 1 + 2 + 3 + ... + (m-1) \\
 			   & = \frac{n(n+1)}{2}-\frac{(m-1)((m-1)+1)}{2} \\
-			   & = \Theta(n^{2}) \\
+			   & = O(n^{2}) \\
 \end{aligned}
 $$
 
@@ -65,7 +65,7 @@ At the end, the function returns the largest number held in A.
 
 ### 2) Analysis:
 
-This function has a big O of $\Theta(n)$.
+This function has a big O of $O(n)$.
 as in, the list is broken apart in a factor of 1 and processed as such.
 the function makes n-1 comparisons to find the largest value.
 
@@ -76,6 +76,6 @@ $$
 	                    & = (Recursive([0..n-3]) + 1) + 1 \\
 	                    & = (Recursive([0..(n-(n-1))]) + 1 + 1 + ... + 1) + 1 \\
 	                    & = n - 1 \\
-                        & = \Theta(n) \\
+                        & = O(n) \\
 \end{aligned}
 $$
