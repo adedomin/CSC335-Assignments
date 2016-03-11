@@ -1,5 +1,5 @@
 ---
-title: Homework 4 CSC335
+title: Homework 4 - CSC335
 author:
     - Anthony DeDominic \<dedominica@my.easternct.edu\>
 date: \today{}
@@ -15,6 +15,10 @@ header-includes:
 
 Algorithm Used
 --------------
+
+This algorithm is not quite the same as was requested.
+This algorithm can find any arbitrary value at any position, including rhe median.
+This algorithm expects a position that starts at 0 and ends at $n-1$.
 
 ```Haskell
 	hw_assign :: Ord a => Int -> [a] -> a
@@ -52,13 +56,14 @@ $$
 		 &= 2n + 2(n-1) + 2(n-2) + T(n-3) \\
 		 &= 2n + 2(n-1) + ... + T(1) \\
 		 &= 2n + 2(n-1) + ... + 2 \\
-		 &= \frac{2n(n-1) }{2} \\
+		 &= \frac{2n(n-1)}{2} \\
 		 &= n^{2} - n \\
 		 &= O(n^{2}) \\
 \end{aligned}
 $$
 
-As seen above, the algorithm in its worse case runs roughly $n^{2}-n$ comparisons. This is mainly because partioning takes at least 2n scans per run.
+As seen above, the algorithm in its worse case runs roughly $n^{2}-n$ comparisons.
+This is mainly because partioning takes at least 2n scans per run.
 
 Comparisons - Best Case
 -----------------------
@@ -91,5 +96,4 @@ Since the other half is not relavent and the algorithm only traverses one of the
 
 Comparisons - Average Case
 --------------------------
-
 
