@@ -16,6 +16,9 @@ header-includes:
 "Brute Force"
 ==============
 
+In the basic sense, all exponent means is multiply this number by itself n times.
+That is all this algorithm does.
+
 ```java
 	public int powerN(int base, int n) {
 		
@@ -36,7 +39,7 @@ Algorithm grows linearly with the value of $n$.
 $$
 \begin{aligned}
 	powerN(1) &= 0 \\
-	powerN(n) &= \sum_{i=1}^{n} 1 \\
+	powerN(n) &= \sum_{i=1}^{n-1} 1 \\
 	          &= (n-1)*1 \\
 			  &= n-1\: \mbox{multiplications}\\
 \end{aligned}
@@ -60,8 +63,7 @@ Recursive, One Level
 Number of Multiplications
 -------------------------
 
-not much different from the iterative looping solution.
-It is still $n$.
+It's not much different from the iterative looping solution.
 
 $$
 \begin{aligned}
@@ -75,6 +77,15 @@ $$
 
 Transformation
 ==============
+
+When drawing out a tree of multiplications, one can see that if the exponent is a power of 2, it is possible to reduce the multiplications by multiplying the base and dividing the exponent by two.
+
+In essence this algorithm virtually splits the numerous multiplications and merges them.
+
+Technically this is a transformation of the problem since it diverts away from the classic sense of the problem by solving it using different math procedures.
+
+Unlike the above recursive solution. This one is faster because of this property.
+To fix uneven exponents, one just needs to multiply the result of the next recursion by the current base local to that function.
 
 ```java
 	public int powerN(int base, int n) {
@@ -98,7 +109,7 @@ Transformation
 Number of Multiplications
 -------------------------
 
-Unlike the other ones, this one significantly reduces the amount of work done as it is not linear anymore. the problem becomes logorithmic instead.
+Unlike the other ones, this one significantly reduces the amount of work done as it is not linear anymore. The problem becomes logarithmic instead.
 
 Assume the exponent is a number that is a power of 2. If it isn't it makes the analysis slightly harder due to two different code paths being taken.
 
@@ -113,5 +124,3 @@ $$
 			  &= \log_2{n}\: \mbox{multiplications} \\
 \end{aligned}
 $$
-
-If you assume $n$ isn't a power of 2, the extra amount of work is very minimal.
