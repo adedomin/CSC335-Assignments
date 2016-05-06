@@ -1,8 +1,8 @@
-hw_assign :: Ord a => Int -> [a] -> a
+quickselect :: Ord a => Int -> [a] -> a
 
-hw_assign pos (x:xs) 
-	| pos < len = hw_assign pos ys
-	| pos > len = hw_assign new_pos zs
+quickselect pos (x:xs) 
+	| pos < len = quickselect pos ys
+	| pos > len = quickselect new_pos zs
 	| otherwise = x
 	where
 		ys  = filter (<x) xs
